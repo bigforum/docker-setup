@@ -3,10 +3,13 @@ version: "3"
 services:
   mysql:
     container_name: bigforum_mysql
-    image: mysql:5.5
+    build:
+      context: ./container/mysql
+      args:
+        BIGFORUM_USE_CUSTOM_DATA: disabled
     restart: unless-stopped
     volumes:
-      - ./data/sql/:/docker-entrypoint-initdb.d
+      - ./data/mysql/:/disabled-docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     networks:
@@ -20,7 +23,7 @@ services:
   php:
     container_name: bigforum_php
     build:
-      context: ./php-container
+      context: ./container/php
       args:
         BIGFORUM_PHP_VERSION: 5.5
         BIGFORUM_VERSION: 6.0.0
