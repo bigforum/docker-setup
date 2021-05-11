@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: bigforum_mysql
+    image: mysql:5.5
+    restart: unless-stopped
+    volumes:
+      - ./data/sql/:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+    environment:
+      - MYSQL_ROOT_PASSWORD=bigforum
+      - MYSQL_DATABASE=bigforum
+      - MYSQL_USER=bigforum
+      - MYSQL_PASSWORD=bigforum
+
+  php:
+    container_name: bigforum_php
+    build:
+      context: ./php-container
+      args:
+        BIGFORUM_PHP_VERSION: 5.5
+        BIGFORUM_VERSION: 6.0.0
+        BIGFORUM_USE_CUSTOM_DATA: disabled
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    volumes:
+      - ./data/php:/var/www/html-custom
+    ports:
+      - "80:80"
+    networks:
+      - default
+
+  phpmyadmin:
+    container_name: bigforum_phpmyadmin
+    image: phpmyadmin
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=bigforum
