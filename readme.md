@@ -4,7 +4,7 @@
 ⚠️ ONLY FOR HISTORIC VALUES. DON'T DARE TO USE THIS IN ANY FORM ON A PRODUCTIVE SYSTEM. IT CONTAINS A LOT OF SECURITY ISSUES.
 
 
-This repository contains a ready-to-go Docker Compose setup to run Bigforum.
+This repository contains a ready-to-go Docker Compose setup to run Bigforum. It spins up MySQL 5.5, Apache + PHP 5.5 and phpMyAdmin 5.1.
 
 
 ## Requirements
@@ -22,8 +22,8 @@ Standard build with the default settings:
 The following build arguments do exist:
 
   * `BIGFORUM_VERSION`, e.g. `5.0.0` - any version from https://github.com/bigforum/bigforum/tags (without the `v`)
-  * `BIGFORUM_PHP_VERSION`. e.g. `5.5` - any PHP version from https://hub.docker.com/_/php?tab=tags which ends on `-apache`
-  * `BIGFORUM_USE_CUSTOM_DATA`, `enabled` or `disabled` (default) - put PHP into ./data/php and (optional) SQL dumps into ./data/mysql; uses those data respectively, ignores `BIGFORUM_VERSION` when `enabled`
+  * `BIGFORUM_PHP_VERSION`. e.g. `5.5` (default) - any PHP version from https://hub.docker.com/_/php?tab=tags which ends on `-apache`
+  * `BIGFORUM_USE_CUSTOM_DATA`, `enabled` or `disabled` (default) - put PHP scripts into ./data/php and (optional) SQL dumps into ./data/mysql; uses those data respectively and ignores `BIGFORUM_VERSION` when `enabled`
 
 
 For example, if you want to have a build with Bigforum `5.0.0`:
