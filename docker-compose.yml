@@ -40,7 +40,7 @@ services:
 
   phpmyadmin:
     container_name: bigforum_phpmyadmin
-    image: phpmyadmin
+    image: phpmyadmin:5.1
     depends_on:
       - mysql
     restart: unless-stopped
