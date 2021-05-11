@@ -19,11 +19,11 @@ Standard build with the default settings:
 
 > docker-compose build
 
-The following build arguments to exist:
+The following build arguments do exist:
 
   * `BIGFORUM_VERSION`, e.g. `5.0.0` - any version from https://github.com/bigforum/bigforum/tags (without the `v`)
   * `BIGFORUM_PHP_VERSION`. e.g. `5.5` - any PHP version from https://hub.docker.com/_/php?tab=tags which ends on `-apache`
-  * `BIGFORUM_USE_CUSTOM_DATA`, `enabled` or `disabled` (default) - put PHP into ./data/php and (optional) SQL dumps into ./data/mysql; uses those data respectively, ignores `BIGFORUM_VERSION`
+  * `BIGFORUM_USE_CUSTOM_DATA`, `enabled` or `disabled` (default) - put PHP into ./data/php and (optional) SQL dumps into ./data/mysql; uses those data respectively, ignores `BIGFORUM_VERSION` when `enabled`
 
 
 For example, if you want to have a build with Bigforum `5.0.0`:
